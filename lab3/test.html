@@ -2,16 +2,12 @@
 <html>
 	<head>
     	<title>ECE 140a Lab #3</title>
-               
- 
         
         
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        
-   
-        
-        
+     
     </head>
+    
 	<body onload="load()">
 
         
@@ -20,54 +16,33 @@
         </nav>
         <br>
 <div class="row">        
-    <div class="container col">
+    <div class="container col-sm-7">
       <div class="card">
       <div class="card-body">
 
-        <table class="table">
+        <table class="table" data-toggle="table" id="table">
           <thead class="thead-light">
             <tr>
-              <th scope="col">Time</th>
-              <th scope="col">Light</th>
-              <th scope="col">Tempurature (C)</th>
-              <th scope="col">Tempurature (F)</th>
-              <th scope="col">Humdity</th>
-              <th scope="col">Sound Envelope</th>
+              <th scope="col" data-field="timestamp">Time</th>
+              <th scope="col" data-field="light">Light</th>
+              <th scope="col" data-field="celsius">Temp (C)</th>
+              <th scope="col" data-field="fahrenheit" >Temp (F)</th>
+              <th scope="col" data-field="humidity">Humidity</th>
+              <th scope="col" data-field="envelope">Sound (Envelope)</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th scope="row">00:00:00</th>
-              <td>##</td>
-              <td>##</td>
-              <td>##</td>
-              <td>##</td>
-              <td>##</td>
-            </tr>
-            <tr>
-              <th scope="row">00:00:00</th>
-              <td>##</td>
-              <td>##</td>
-              <td>##</td>
-              <td>##</td>
-            </tr>
-            <tr>
-              <th scope="row">00:00:00</th>
-              <td>##</td>
-              <td>##</td>
-              <td>##</td>
-              <td>##</td>
-            </tr>
-          </tbody>
+
         </table>
           </div>
     </div>
     </div>
-    <div class="container col">
+    
+    <div class="container col col-sm-5">
       <div class="card">
-<canvas id="line-chart" width="800" height="450"></canvas>
+<canvas id="temp-chart" width="800" height="450"></canvas>
+<canvas id="light-chart" width="800" height="450"></canvas>
+<canvas id="sound-chart" width="800" height="450"></canvas>
 
-<canvas id="" width="800" height="450"></canvas>
           
     </div>
     </div>
@@ -84,78 +59,96 @@
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
 
-       	<script type="text/javascript" src="file.json"></script>
+       <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+        
+        <script type="text/javascript" src="testjson.json"></script>
     	<script type="text/javascript" src="myscript.js"></script> 
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+
+<!-- Latest compiled and minified Locales -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>    
     
-            <script>
-            var mydata = JSON.parse(data);
-                
-    new Chart(document.getElementById("line-chart"), {
+<script> 
+new Chart(document.getElementById("temp-chart"), {
   type: 'line',
   data: {
-    labels: [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050],
+    labels: n,
     datasets: [{ 
-        data: [86,114,106,106,107,111,133,221,783,2478],
-        label: "Africa",
+        data: temp_c,
+        label: "Celsius",
         borderColor: "#3e95cd",
         fill: false
       }, { 
-        data: [282,350,411,502,635,809,947,1402,3700,5267],
-        label: "Asia",
+        data: temp_f,
+        label: "Fahrenheit",
         borderColor: "#8e5ea2",
         fill: false
       }, { 
-        data: [168,170,178,190,203,276,408,547,675,734],
-        label: "Europe",
+        data: humidity,
+        label: "Humidity",
         borderColor: "#3cba9f",
         fill: false
-      }, { 
-        data: [40,20,10,16,24,38,74,167,508,784],
-        label: "Latin America",
-        borderColor: "#e8c3b9",
-        fill: false
-      }, { 
-        data: [6,3,2,2,7,26,82,172,312,433],
-        label: "North America",
-        borderColor: "#c45850",
-        fill: false
       }
+    
     ]
   },
   options: {
     title: {
       display: true,
-      text: 'World population per region (in millions)'
+      text: 'Temperature & Humidity Sensor'
     }
   }
 });
                 
- var lineChart = new Chart(document.getElementById("line-chart"), {
-    type: 'line',
-    data: speedData,
-    options: chartOptions
-});               
-                
- var speedData = {
-  labels: ["0s", "10s", "20s", "30s", "40s", "50s", "60s"],
-  datasets: [{
-    label: "Car Speed",
-    data: [0, 59, 75, 20, 20, 55, 40],
-  }]
-};
- 
-var chartOptions = {
-  legend: {
-    display: true,
-    position: 'top',
-    labels: {
-      boxWidth: 80,
-      fontColor: 'black'
+            
+   new Chart(document.getElementById("light-chart"), {
+  type: 'line',
+  data: {
+    labels: n,
+    datasets: [{ 
+        data: light,
+        label: "Light Value",
+        borderColor: "#3e95cd",
+        fill: false
+      },
+    
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: 'Light Sensor'
     }
   }
-};               
-                
+});                 
+                  new Chart(document.getElementById("sound-chart"), {
+  type: 'line',
+  data: {
+    labels: n,
+    datasets: [{ 
+        data: sound,
+        label: "Sound Envelope",
+        borderColor: "#3e95cd",
+        fill: false
+      },
+    
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: 'Sound Sensor'
+    }
+  }
+});            
+    
                 
 </script>
+    
     
 </html>
