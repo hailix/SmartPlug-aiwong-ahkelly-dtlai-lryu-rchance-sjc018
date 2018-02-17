@@ -29,7 +29,12 @@ while (i<=60):
     # envelope=1
     my_dict[i] = {'timestamp':timestamp,'light':light,'celsius':celsius,'fahrenheit':fahrenheit,'humidity':humidity,'envelope':envelope}
     print ("i: ", i)
+    print ("light", light)
+    print ("tempC",celsius)
+    print ("humidity", humidity)
+    print ("envelope", envelope)
     i=i+1
+    time.sleep(60)
     
 
 
