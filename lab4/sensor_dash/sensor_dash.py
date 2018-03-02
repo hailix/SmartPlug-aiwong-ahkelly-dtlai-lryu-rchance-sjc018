@@ -47,7 +47,7 @@ def close_db(error):
 ##### ROUTES #####
 @app.route('/') #main dashboard
 def dashboard_view():
-    return render_template('dashboard.html')
+    return render_template('lab3_page.html') #change to dashboard
 
 @app.route('/temp_humidity')
 def temp_hum_view():
@@ -62,20 +62,4 @@ def sound_view():
     return render_template('sound_sensor.html')
 
 
-""""
-@app.route('/get_example')
-def GET_Example() :
-    db = get_db()
-    cur = db.execute('SELECT first_name, last_name, age FROM users ORDER BY id DESC')
-    the_users = cur.fetchall()
-    return render_template('get_example.html', entries=the_users)
 
-@app.route('/post_example', methods=['POST'])
-def POST_Example():
-    db = get_db()
-    db.execute('INSERT INTO users (first_name, last_name, age) VALUES (?, ?, ?)',
-                 [request.form['first'], request.form['last'], request.form['age']])
-    db.commit()
-    return redirect('/get_example')
-
-""""
