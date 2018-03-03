@@ -8,17 +8,14 @@
      <table class="table">
        <thead>
           <tr>
-            <th>
-            Time:
+          <th>
+            Celsius:
           </th>
           <th>
-            Celsius: 
+            Fahrenheit:
           </th>
           <th>
-            Fahrenheit: 
-          </th>
-          <th>
-            Humidity: 
+            Humidity:
           </th>
           </tr>
        </thead>
@@ -26,7 +23,6 @@
        <tbody>
         {% for entry in entries %}
         <tr>
-          <td>%this is the time</td>
           <td>{{ entry.celsius }}</td>
           <td>{{ entry.fahrenheit }}</td>
           <td>{{ entry.humidity }}</td>
