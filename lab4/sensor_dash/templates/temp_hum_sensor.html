@@ -4,5 +4,17 @@
 {% block body %}
 <div id="row" style="text-align: center;">
 <br>
-    <h3>Temperature and Humidity Sensor (insert_name_here) Readings Page</h3></div>
+    <h3>Temperature and Humidity Sensor (insert_name_here) Readings Page</h3>
+     <ul>
+    {% for entry in entries %}
+    	<li>
+          <h3>Celsius: {{ entry.celsius }} Fahrenheit: {{ entry.fahrenheit }} Humidity: {{ entry.humidity }} </h3>
+        </li>
+     {% else %}
+                <li>
+                    <em> Unbelievable! There are no users so far!</em>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
 {% endblock %}
