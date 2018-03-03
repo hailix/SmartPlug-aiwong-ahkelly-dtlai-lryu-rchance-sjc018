@@ -1,4 +1,5 @@
 import sys
+sys.path.insert(0,"/home/pi")
 import time
 import SmartDHT22
 import SmartMCP3008
