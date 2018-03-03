@@ -89,6 +89,8 @@ def sound_view():
     db = get_db()
     cur = db.execute('SELECT * from SS')
     info = cur.fetchall()
+    if len(info) == 0:
+        raise NameError("wrongSize")
     return render_template('sound_sensor.html', entries=info)
 
 
