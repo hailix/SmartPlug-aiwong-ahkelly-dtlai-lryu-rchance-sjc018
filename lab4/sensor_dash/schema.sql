@@ -1,8 +1,16 @@
-#sample
-DROP TABLE if exists users;
-CREATE TABLE users (
-    id INTEGER PRIMARY KEY autoincrement,
-    first_name TEXT NOT NULL,
-    last_name TEXT NOT NULL,
-    age INTEGER
+DROP TABLE if exists MCP;
+DROP TABLE if exists DHT;
+DROP TABLE if exists SS;
+CREATE TABLE MCP (
+    voltage TEXT NOT NULL
+);
+CREATE TABLE DHT (
+    celsius INTEGER NOT NULL,
+    fahrenheit INTEGER NOT NULL,
+    humidity INTEGER NOT NULL
+);
+CREATE TABLE SS (
+    gate INTEGER NOT NULL,
+    envelope INTEGER NOT NULL,
+    audio INTEGER NOT NULL
 );
