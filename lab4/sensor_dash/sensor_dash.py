@@ -68,7 +68,11 @@ def close_db(error):
 ##### ROUTES #####
 @app.route('/') #main dashboard
 def dashboard_view():
-    return render_template('lab3_page.html') #change to dashboard
+    #return render_template('lab3_page.html') #change to dashboard
+    db = get_db()
+    cur = db.execute('SELECT * from DHT')
+    info = cur.fetchall()
+    return render_template('temp_hum_sensor.html', entries=info)
 
 @app.route('/temp_humidity')
 def temp_hum_view():
