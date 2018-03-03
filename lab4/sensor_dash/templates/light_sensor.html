@@ -5,6 +5,31 @@
 <div id="row" style="text-align: center;">
 <br>
     <h3>Light Sensor (Photoresistor) Readings Page</h3>
+
+<table class="table">
+       <thead>
+          <tr>
+            <th>
+            Light (voltage):
+          </th>
+       </thead>
+
+       <tbody>
+        {% for entry in entries %}
+        <tr>
+          <td>%this is the time</td>
+          <td>{{ entry.voltage }}</td>
+        </tr>
+        {% else %}
+                <li>
+                    <em> Unbelievable! There are no users so far!</em>
+                </li>
+            {% endfor %}
+       </tbody>
+     </table>
+    <!--  <ul>
+
+
 <ul>
             {% for entry in entries %}
                 <li>
