@@ -1,0 +1,49 @@
+<!----temp/hum sensor---->
+{% extends "layout_sensor.html" %}
+
+{% block body %}
+<div id="row" style="text-align: center;">
+<br>
+    <h3>Temperature and Humidity Sensor Readings Page</h3>
+     <table class="table">
+       <thead>
+          <tr>
+          <th>
+            Celsius:
+          </th>
+          <th>
+            Fahrenheit:
+          </th>
+          <th>
+            Humidity:
+          </th>
+          </tr>
+       </thead>
+
+       <tbody>
+        {% for entry in entries %}
+        <tr>
+          <td>{{ entry.celsius }}</td>
+          <td>{{ entry.fahrenheit }}</td>
+          <td>{{ entry.humidity }}</td>
+        </tr>
+        {% else %}
+                <li>
+                    <em> Unbelievable! There are no users so far!</em>
+                </li>
+            {% endfor %}
+       </tbody>
+     </table>
+    <!--  <ul>
+    {% for entry in entries %}
+    	<li>
+          <h3>Celsius: {{ entry.celsius }} Fahrenheit: {{ entry.fahrenheit }} Humidity: {{ entry.humidity }} </h3>
+        </li> -->
+    <!--  {% else %}
+                <li>
+                    <em> Unbelievable! There are no users so far!</em>
+                </li> -->
+            <!-- {% endfor %}
+            </ul> -->
+        </div>
+{% endblock %}

@@ -1,0 +1,44 @@
+
+{% extends "layout_master.html" %}
+
+{% block body %}
+
+
+<div class="row" onload="load()">        
+    <div class="container col-sm-7">
+      <div class="card">
+      <div class="card-body">
+
+        <table class="table" data-toggle="table" id="table">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col" data-field="timestamp">Time</th>
+              <th scope="col" data-field="light">Light</th>
+              <th scope="col" data-field="celsius">Temp (C)</th>
+              <th scope="col" data-field="fahrenheit" >Temp (F)</th>
+              <th scope="col" data-field="humidity">Humidity</th>
+              <th scope="col" data-field="envelope">Sound (Envelope)</th>
+            </tr>
+          </thead>
+
+        </table>
+          </div>
+    </div>
+    </div>
+    
+    <div class="container col col-sm-5">
+      <div class="card">
+<canvas id="temp-chart" width="800" height="450"></canvas>
+<canvas id="light-chart" width="800" height="450"></canvas>
+<canvas id="sound-chart" width="800" height="450"></canvas>
+
+          
+    </div>
+    </div>
+        </div>
+{% endblock %}
+
+
+    <script type="text/javascript" src="/static/testjson.json"></script>
+        
+    <script type="text/javascript" src="/static/js/lab3.js"></script> 

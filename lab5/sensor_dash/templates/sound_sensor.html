@@ -1,0 +1,31 @@
+<!----sound sensor---->
+{% extends "layout_sensor.html" %}
+
+{% block body %}
+<div id="row" style="text-align: center;">
+<br>
+    <h3>Sound Sensor (name_here) Readings Page</h3>
+      <table class="table">
+	<thead>
+	  <tr>
+            <th> Gate: </th>
+	    <th> Envelope: </th>
+	    <th> Audio: </th>
+          </tr>
+        </thead>
+	<tbody>
+	  {% for entry in entries %}
+	  <tr>
+            <td>{{ entry.gate }}</td>
+	    <td>{{ entry.envelope }}</td>
+	    <td>{{ entry.audio }}</td>
+	  </tr>
+	  {% else %}
+	    <li>
+	      <em> Unbelievable! There are no users so far! </em>
+	    </li>
+	  {% endfor %}
+	</tbody>
+      </table>
+</div>
+{% endblock %}
