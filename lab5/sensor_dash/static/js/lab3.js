@@ -26,6 +26,20 @@ function load() {
     
 }
 
+
+function getData(name) {
+        
+// pulled this off of my homework, not quite right for this
+	fetch('/sensor/'+name).then(response => response.json()).then(function(response) { for (var key in response) {
+		console.log(key)
+		if(key != "id") {
+			document.getElementById(key).innerHTML=response[key]
+	        }
+	}
+	})
+}
+
+
 $(function () {
     $('#table').bootstrapTable({
         data: Object.values(mydata)

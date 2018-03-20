@@ -16,13 +16,13 @@
     <a class="nav-link" href="{{ url_for('dashboard_view')}}">Overview</a>
   </li>
     <li class="nav-item">
-    <a class="nav-link" href="{{ url_for('light_view')}}">Light Sensor</a>
+	    <a class="nav-link" href="/sensor/MCP" onclick=getData("MCP")>Light Sensor</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{ url_for('temp_hum_view')}}">Temperature & Humidity Sensor</a>
+	  <a class="nav-link" href="/sensor/DHT?count=10"  onclick=getData("DHT") >Temperature & Humidity Sensor</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{ url_for('sound_view')}}">Sound Sensor</a>
+    <a class="nav-link" href="/sensor/SS?count=10" onclick=getData("SS")>Sound Sensor</a>
   </li>
 </ul>
         </nav>

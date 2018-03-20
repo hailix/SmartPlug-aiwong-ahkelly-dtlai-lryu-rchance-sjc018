@@ -1,5 +1,5 @@
 # sensor_dash/sensore_dash.py
-from flask import Flask, render_template, g, request, redirect
+from flask import Flask, render_template, g, request, redirect, jsonify
 
 import os
 from sqlite3 import dbapi2 as sqlite3
@@ -73,21 +73,30 @@ def dashboard_view():
     cur = db.execute('SELECT * from DHT')
     info = cur.fetchall()
     return render_template('temp_hum_sensor.html', entries=info)
-
-@app.route('/temp_humidity')
+'''
+@app.route('/temp_humidity', methods=["GET"])
 def temp_hum_view():
     db = get_db()
     cur = db.execute('SELECT * from DHT')
     info = cur.fetchall()
     return render_template('temp_hum_sensor.html', entries=info)
-
-@app.route('/light')
-def light_view():
+'''
+@app.route('/sensor/<name>', methods=["GET"])
+def getDataRoute(name):
     db = get_db()
-    cur = db.execute('SELECT * from MCP')
+    cur = db.execute("SELECT * from "+name)
     info = cur.fetchall()
-    return render_template('light_sensor.html', entries=info)
+    print(info[0])
+    #print(info)
+    output = []
 
+    # NEED JSON OF COUNT # OF ELEMENTS
+    '''if(name == 'MCP'):
+      for value in range(count):
+        output.append( jsonify(voltage = info[0][value]))
+    '''
+    return jsonify(voltage=info[0][0])
+'''
 @app.route('/sound')
 def sound_view():
     db = get_db()
@@ -96,6 +105,6 @@ def sound_view():
     # if len(info) == 0:
     #     raise NameError("wrongSize")
     return render_template('sound_sensor.html', entries=info)
-
+'''
 
 
