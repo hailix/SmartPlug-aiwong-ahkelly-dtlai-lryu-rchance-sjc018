@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
     <head>
+      <link rel="shortcut icon" href="">
         <title>ECE 140a Lab 4</title>
         <!--- Bootstrap CSS CDN --->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -16,10 +17,10 @@
     <a class="nav-link" href="{{ url_for('dashboard_view')}}">Overview</a>
   </li>
     <li class="nav-item">
-	    <a class="nav-link" href="/sensor/MCP" onclick=getData("MCP")>Light Sensor</a>
+	    <a class="nav-link" href="/sensor/MCP?count=10" onclick=getData("MCP")>Light Sensor</a>
   </li>
   <li class="nav-item">
-	  <a class="nav-link" href="/sensor/DHT?count=10"  onclick=getData("DHT") >Temperature & Humidity Sensor</a>
+	  <a class="nav-link"  href="/temp_humidity" onclick=clicked1("DHT", 10) >Temperature & Humidity Sensor</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="/sensor/SS?count=10" onclick=getData("SS")>Sound Sensor</a>

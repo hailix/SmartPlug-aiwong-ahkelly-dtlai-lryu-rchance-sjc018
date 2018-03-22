@@ -28,16 +28,36 @@ function load() {
 
 
 function getData(name) {
-        
+ console.log('hi');     
 // pulled this off of my homework, not quite right for this
-	fetch('/sensor/'+name).then(response => response.json()).then(function(response) { for (var key in response) {
-		console.log(key)
-		if(key != "id") {
-			document.getElementById(key).innerHTML=response[key]
+	fetch('/'+name).then(response => response.json()).then(
+        function(response) { 
+            for (item in response) {
+                for (var key in item) {
+		          console.log(key)
+		          if(key != "id") {
+			         document.getElementById(key).innerHTML=item[key];
+            }
 	        }
-	}
+	   }
 	})
 }
+
+var clicked1 = function(name, count) {
+    console.log('hi');
+  fetch('http://localhost:5050/sensor/'+name+'?count='+count)
+    .then(response => response.json())
+    .then(function(response) {
+      // document.getElementById('bn').innerHTML=response['business_name'];
+      // document.getElementById('bt').innerHTML=response['business_type'];
+      // document.getElementById('mt').innerHTML=response['market_type'];
+      // document.getElementById('jd').innerHTML=response['job_to_be_done']
+      // document.getElementById('rm').innerHTML=response['revenue_model'];
+      for (item in response) {
+        document.getElementById('data1').innerHTML=response['tmp'];
+      }
+    }
+  );
 
 
 $(function () {

@@ -73,29 +73,29 @@ def dashboard_view():
     cur = db.execute('SELECT * from DHT')
     info = cur.fetchall()
     return render_template('temp_hum_sensor.html', entries=info)
-'''
+
 @app.route('/temp_humidity', methods=["GET"])
 def temp_hum_view():
-    db = get_db()
-    cur = db.execute('SELECT * from DHT')
-    info = cur.fetchall()
-    return render_template('temp_hum_sensor.html', entries=info)
-'''
-@app.route('/sensor/<name>', methods=["GET"])
-def getDataRoute(name):
-    db = get_db()
-    cur = db.execute("SELECT * from "+name)
-    info = cur.fetchall()
-    print(info[0])
-    #print(info)
-    output = []
+    # db = get_db()
+    # cur = db.execute('SELECT * from DHT')
+    # info = cur.fetchall()
+    return render_template('temp_hum_sensor.html')#, entries=info)
 
-    # NEED JSON OF COUNT # OF ELEMENTS
-    '''if(name == 'MCP'):
-      for value in range(count):
-        output.append( jsonify(voltage = info[0][value]))
-    '''
-    return jsonify(voltage=info[0][0])
+# @app.route('/sensor/<name>', methods=["GET"])
+# def getDataRoute(name):
+#     db = get_db()
+#     cur = db.execute("SELECT * from "+name)
+#     info = cur.fetchall()
+#     print(info[0])
+#     #print(info)
+#     output = []
+
+#     # NEED JSON OF COUNT # OF ELEMENTS
+#     '''if(name == 'MCP'):
+#       for value in range(count):
+#         output.append( jsonify(voltage = info[0][value]))
+#     '''
+#     return jsonify(voltage=info[0][0])
 '''
 @app.route('/sound')
 def sound_view():
@@ -106,5 +106,42 @@ def sound_view():
     #     raise NameError("wrongSize")
     return render_template('sound_sensor.html', entries=info)
 '''
+@app.route('/sensor/<sensor>', methods=["GET"])
+def getData(sensor):
+    output=[]
+    db = get_db()
+    cur=db.execute("SELECT * from " +sensor)
+    info = cur.fetchall()
+
+    tmp=0
+
+    c = request.args['count']
+
+    print(c)
+    for item in info:
+        while (tmp<int(c)):
+                if (sensor == 'MCP'):
+                    sensorDict = {
+                            'voltage':item[0]}
+                    #output.append(jsonify(sensorDict))
+                    tmp=tmp+1
+                if (sensor== 'DHT'):
+                    sensorDict = {
+                            'celsius':item[0],
+                            'fahrenheit':item[1],
+                            'humidity':item[2]}
+                    #tmpj = jsonify(celsius=item[0], fahrenheit=item[1], humiditty=item[2])
+                    #output.append(tmpj)
+                    output.append(sensorDict)
+                    #output.append(jsonify(celsius=item[0], fahrenheit=item[1],  humidity=item[2]))
+                    tmp=tmp+1
+                if (sensor=='SS'):
+                    sensorDict = {
+                            'gate':item[0],
+                            'envelope':item[1],
+                            'audio':item[2]}
+                    output.append(sensorDict)
+                    tmp=tmp+1
+    return jsonify(tmp=output)
 
 
