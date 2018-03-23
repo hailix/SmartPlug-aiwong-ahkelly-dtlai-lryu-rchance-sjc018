@@ -72,7 +72,7 @@ def dashboard_view():
     db = get_db()
     cur = db.execute('SELECT * from DHT')
     info = cur.fetchall()
-    return render_template('temp_hum_sensor.html', entries=info)
+    return render_template('dashboard.html', entries=info)
 
 @app.route('/temp_humidity', methods=["GET"])
 def temp_hum_view():
@@ -119,11 +119,11 @@ def getDataRoute(sensor):
 
     print(c)
     for item in info:
-        while (tmp<int(c)):
+        if (tmp<int(c)):
                 if (sensor == 'MCP'):
                     sensorDict = {
                             'voltage':item[0]}
-                    #output.append(jsonify(sensorDict))
+                    output.append(sensorDict)
                     tmp=tmp+1
                 if (sensor== 'DHT'):
                     sensorDict = {

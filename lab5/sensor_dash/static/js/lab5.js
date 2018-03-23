@@ -4,17 +4,34 @@ function getData(sensor,count) {
 	fetch('/sensor/'+sensor+'?count='+count).then(response => response.json()).then(
         function(response) { 
             table = document.getElementById('data1');
+			table.innerHTML = "";
+
+			var row = document.createElement("tr");
+			var cell = document.createElement("th");
+			value = document.createTextNode(sensor);		
+			cell.appendChild(value);
+			row.appendChild(cell);
+			table.appendChild(row);	      
+  
             for (var item in response["tmp"]) {
               
         console.log(response["tmp"]);
-        console.log(item);
+  //      console.log(item);
      //   console.log(value);
      //   console.log(typeof(value));
-        console.log(response["tmp"][0].celsius);
+    //    console.log(response["tmp"][0].celsius);
         row = document.createElement("tr");
         cell1 = document.createElement("td");
-        cell2 = document.createElement("td");
-        value = document.createTextNode(response["tmp"][0].celsius);
+
+        if(sensor == "MCP") {
+			value = document.createTextNode(response["tmp"][item].voltage);
+		}
+        if(sensor == "DHT") {
+			value = document.createTextNode(response["tmp"][item].celsius);
+		}
+        if(sensor == "SS") {
+			value = document.createTextNode(response["tmp"][item].audio);
+		}
         cell1.appendChild(value);
         row.appendChild(cell1);
         table.appendChild(row);
