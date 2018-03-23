@@ -3,6 +3,7 @@ function getData(sensor,count) {
     
         document.getElementById("slidercontainer").style.display="block";
         document.getElementById("loadingMessage").style.display="none";
+        document.getElementById("disclaimer").style.display="block";
 
 	fetch('/sensor/'+sensor+'?count='+count).then(response => response.json()).then(
         function(response) { 
@@ -18,8 +19,9 @@ function getData(sensor,count) {
 		var cell = document.createElement("th");
 
                 if (sensor == "MCP") {
-                  row.insertCell(-1).innerHTML="Voltage Level";
-                  table.appendChild(row);	      
+                  row.insertCell(-1).innerHTML="Voltage Level";	
+                  row.insertCell(-1).innerHTML="Approximate % of Light";
+                  table.appendChild(row);      
 	        }
 
                 else if(sensor == "DHT") {
@@ -46,15 +48,31 @@ function getData(sensor,count) {
         cell1 = document.createElement("td");
 
         if(sensor == "MCP") {
-	  value = document.createTextNode(response["tmp"][item].voltage);
-          cell1.appendChild(value);
-          row.appendChild(cell1);
+
+          row.insertCell(-1).innerHTML=response["tmp"][item].voltage;
+          x = row.insertCell(-1);
+          x.innerHTML=(Number(response["tmp"][item].voltage)*.101317-3.04);
+         
+          if(Number(x.innerHTML) < 40) {
+            x.style.color = "red";
+          } 
+         
           table.appendChild(row);
                         
 	}
         if(sensor == "DHT") {
-          row.insertCell(-1).innerHTML=response["tmp"][item].celsius;
-          row.insertCell(-1).innerHTML=response["tmp"][item].fahrenheit;
+          x = row.insertCell(-1);
+          x.innerHTML=response["tmp"][item].celsius;
+          
+          if(Number(x.innerHTML) > 28) {
+            x.style.color ="red";
+          }
+          x = row.insertCell(-1);
+          x.innerHTML=response["tmp"][item].fahrenheit;
+
+          if(Number(x.innerHTML) > 82) {
+            x.style.color="red";
+          }
           row.insertCell(-1).innerHTML=response["tmp"][item].humidity;
           table.appendChild(row);
 	}
