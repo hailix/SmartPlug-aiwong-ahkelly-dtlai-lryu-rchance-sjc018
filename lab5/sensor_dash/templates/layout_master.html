@@ -1,6 +1,16 @@
 <!doctype html>
 <html>
     <head>
+    <style>
+      table {
+        width: 40%;
+        border: 1px solid black;
+      }
+      td {
+      //  border: 1px solid black;
+      }
+
+    </style>  
       <link rel="shortcut icon" href="">
         <title>ECE 140a Lab 4</title>
         <!-- Bootstrap CSS CDN -->
@@ -11,28 +21,33 @@
         
     </head>
         <nav class="navbar navbar-inverse bg-dark">
-        <h2 style="color: white">ECE 140a Lab #4: Sensor Data Dashboard</h2>
+        <h2 style="color: white">ECE 140a Lab #5: Sensor Data Dashboard</h2>
 <ul class="nav nav-pills nav-fill">
-  <li class="nav-item">
-    <button class="nav-link" href="{{ url_for('dashboard_view')}}">Overview</button>
-  </li>
+
     <li class="nav-item">
-	  <button class="nav-link" onclick=getData('MCP',10) >Light Sensor</button>
+	  <button class="nav-link" onclick=getData('MCP',document.getElementById("slidebar").value) >Light Sensor</button>
   </li>
   <li class="nav-item">
-	  <button class="nav-link"  onclick=getData("DHT",10) >Temperature & Humidity Sensor</button>
+	  <button class="nav-link"  onclick=getData("DHT",document.getElementById("slidebar").value) >Temperature & Humidity Sensor</button>
   </li>
   <li class="nav-item">
-    <button class="nav-link" onclick=getData("SS",10)>Sound Sensor</button>
+    <button class="nav-link" onclick=getData("SS",document.getElementById("slidebar").value)>Sound Sensor</button>
   </li>
 </ul>
         </nav>
-    
-    <body>
-   
-    <table id = 'data1'></table>
+  
+    <body style="background-color:green;">
 
-     
+    <h1 id=dbheader></h1>  
+ 
+    <div class="slidecontainer" id="slidercontainer" style="display: none;">
+      <p> Select the number of sensor readings to display. </p>
+      <input type="range" min="1" max="60" value="10"  id="slidebar">
+    </div>     
+
+    <table width="100%" id='data1' style="background-color:lime;"></table>
+
+
         {% block body %}
     
     

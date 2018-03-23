@@ -1,18 +1,42 @@
 function getData(sensor,count) {
  //console.log(count);     
+        document.getElementById("slidercontainer").style.display="block";
 // pulled this off of my homework, not quite right for this
 	fetch('/sensor/'+sensor+'?count='+count).then(response => response.json()).then(
         function(response) { 
+
+            header = document.getElementById('dbheader');
+            header.innerHTML = sensor+" Sensor Data";
+
             table = document.getElementById('data1');
 			table.innerHTML = "";
+            
 
-			var row = document.createElement("tr");
-			var cell = document.createElement("th");
-			value = document.createTextNode(sensor);		
-			cell.appendChild(value);
-			row.appendChild(cell);
-			table.appendChild(row);	      
-  
+             	//var row = document.createElement("tr");
+                var row = table.insertRow(-1);
+		var cell = document.createElement("td");
+
+                if (sensor == "MCP") {
+                  row.insertCell(-1).innerHTML="Voltage Level";
+                  table.appendChild(row);	      
+	        }
+
+                else if(sensor == "DHT") {
+                  row.insertCell(-1).innerHTML="Degrees Celsius";
+                  row.insertCell(-1).innerHTML="Degrees Fahrenheit";
+                  row.insertCell(-1).innerHTML="Humidity";
+                  table.appendChild(row);
+                }     
+
+                else if(sensor == "SS") {
+                  row.insertCell(-1).innerHTML="Audio Signal";
+                  row.insertCell(-1).innerHTML="Audio Envelope";
+                  row.insertCell(-1).innerHTML="Audio Gate";
+                  table.appendChild(row);
+                }
+
+
+
             for (var item in response["tmp"]) {
               
         console.log(response["tmp"]);
@@ -24,17 +48,27 @@ function getData(sensor,count) {
         cell1 = document.createElement("td");
 
         if(sensor == "MCP") {
-			value = document.createTextNode(response["tmp"][item].voltage);
-		}
+	  value = document.createTextNode(response["tmp"][item].voltage);
+          cell1.appendChild(value);
+          row.appendChild(cell1);
+          table.appendChild(row);
+                        
+	}
         if(sensor == "DHT") {
-			value = document.createTextNode(response["tmp"][item].celsius);
-		}
+          row.insertCell(-1).innerHTML=response["tmp"][item].celsius;
+          row.insertCell(-1).innerHTML=response["tmp"][item].fahrenheit;
+          row.insertCell(-1).innerHTML=response["tmp"][item].humidity;
+          table.appendChild(row);
+	}
         if(sensor == "SS") {
-			value = document.createTextNode(response["tmp"][item].audio);
-		}
-        cell1.appendChild(value);
-        row.appendChild(cell1);
-        table.appendChild(row);
+          row.insertCell(-1).innerHTML=response["tmp"][item].audio;
+          row.insertCell(-1).innerHTML=response["tmp"][item].envelope;
+          row.insertCell(-1).innerHTML=response["tmp"][item].gate;
+          table.appendChild(row);
+	}
+      //  cell1.appendChild(value);
+      //  row.appendChild(cell1);
+      //  table.appendChild(row);
         //document.getElementById('data1').innerHTML=response["tmp"][0].celsius; 
 	       
          }
