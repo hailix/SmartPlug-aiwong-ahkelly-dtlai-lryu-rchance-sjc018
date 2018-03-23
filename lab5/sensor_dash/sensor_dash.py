@@ -107,7 +107,7 @@ def sound_view():
     return render_template('sound_sensor.html', entries=info)
 '''
 @app.route('/sensor/<sensor>', methods=["GET"])
-def getData(sensor):
+def getDataRoute(sensor):
     output=[]
     db = get_db()
     cur=db.execute("SELECT * from " +sensor)
