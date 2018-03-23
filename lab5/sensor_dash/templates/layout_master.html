@@ -3,7 +3,7 @@
     <head>
       <link rel="shortcut icon" href="">
         <title>ECE 140a Lab 4</title>
-        <!--- Bootstrap CSS CDN --->
+        <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         
                 <!-- Latest compiled and minified CSS -->
@@ -14,26 +14,31 @@
         <h2 style="color: white">ECE 140a Lab #4: Sensor Data Dashboard</h2>
 <ul class="nav nav-pills nav-fill">
   <li class="nav-item">
-    <a class="nav-link" href="{{ url_for('dashboard_view')}}">Overview</a>
+    <button class="nav-link" href="{{ url_for('dashboard_view')}}">Overview</button>
   </li>
     <li class="nav-item">
-	    <a class="nav-link" href="/sensor/MCP?count=10" onclick=getData("MCP")>Light Sensor</a>
+	  <button class="nav-link" onclick=getData('MCP',10) >Light Sensor</button>
   </li>
   <li class="nav-item">
-	  <a class="nav-link"  href="/temp_humidity" onclick=clicked1("DHT", 10) >Temperature & Humidity Sensor</a>
+	  <button class="nav-link"  onclick=getData("DHT",10) >Temperature & Humidity Sensor</button>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="/sensor/SS?count=10" onclick=getData("SS")>Sound Sensor</a>
+    <button class="nav-link" onclick=getData("SS",10)>Sound Sensor</button>
   </li>
 </ul>
         </nav>
     
     <body>
+   
+    <table id = 'data1'></table>
+
+     
         {% block body %}
-        
+    
+    
         {% endblock %}
     <!--- insert footer anything here -->
-    <!--- SCRIPTS --->    
+    <!-- SCRIPTS -->    
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js" integrity="sha384-feJI7QwhOS+hwpX2zkaeJQjeiwlhOP+SdQDqhgvvo1DsjtiSQByFdThsxO669S2D" crossorigin="anonymous"></script>
         
 
@@ -52,7 +57,7 @@
         <!-- Latest compiled and minified Locales -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>    
         
-        
+        <script src="/static/js/lab5.js"></script>
     </body>
 </html>
 
