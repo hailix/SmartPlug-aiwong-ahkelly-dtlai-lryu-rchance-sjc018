@@ -1,6 +1,6 @@
 function getData(sensor,count) {
 
-    
+        document.getElementById("slidervalue").innerHTML = count;
         document.getElementById("slidercontainer").style.display="block";
         document.getElementById("loadingMessage").style.display="none";
         document.getElementById("disclaimer").style.display="block";
@@ -95,4 +95,10 @@ function plantInfo() {
   }
 }
 
+var slider = document.getElementById("slidebar");
+var output = document.getElementById("slidervalue");
+
+slider.oninput = function() {
+  output.innerHTML = this.value;
+}
 

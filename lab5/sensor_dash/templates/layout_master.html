@@ -41,7 +41,7 @@
         </nav>
   
     <body style="background-color:green;">
-
+      <img style="float: right; margin: 40px 40px 0px 0px;" src="{{ url_for('static',filename='goldenpothos.jpeg')}}" width="600">
     <div id=plantWindow style="display: none;">
 
       <h1>Golden Pothos (Devil's Ivy)</h1>
@@ -69,6 +69,8 @@
     <div class="slidecontainer" id="slidercontainer" style="display: none;">
       <p> Select the number of sensor readings to display. (Click sensor buttons to refresh) </p>
       <input type="range" min="1" max="60" value="10"  id="slidebar">
+      <p> Number of records displayed: </p>
+      <div id="slidervalue"></div>
     </div>     
 
     <table width="100%" id='data1' style="background-color:lime;"></table>
