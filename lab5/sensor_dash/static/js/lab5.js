@@ -1,6 +1,7 @@
 function getData(sensor,count) {
  //console.log(count);     
         document.getElementById("slidercontainer").style.display="block";
+        document.getElementById("loadingMessage").style.display="none";
 // pulled this off of my homework, not quite right for this
 	fetch('/sensor/'+sensor+'?count='+count).then(response => response.json()).then(
         function(response) { 
