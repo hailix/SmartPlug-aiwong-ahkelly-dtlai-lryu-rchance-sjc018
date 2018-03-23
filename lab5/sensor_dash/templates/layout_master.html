@@ -25,6 +25,10 @@
 <ul class="nav nav-pills nav-fill">
 
     <li class="nav-item">
+	  <button class="nav-link" onclick=plantInfo()>Get Plant Information</button>
+  </li>
+
+    <li class="nav-item">
 	  <button class="nav-link" onclick=getData('MCP',document.getElementById("slidebar").value) >Light Sensor</button>
   </li>
   <li class="nav-item">
@@ -37,6 +41,24 @@
         </nav>
   
     <body style="background-color:green;">
+
+    <div id=plantWindow style="display: none;">
+
+      <h1>Golden Pothos (Devil's Ivy)</h1>
+
+      <table>
+        <tr>
+          <th> Recommended hours of sunlight per day </th>
+          <th> Recommended amount of water per day </th>
+          <th> Recommended temperature in &#8451; (&#8457;)</th>
+        </tr>
+        <tr>
+          <td>12-14 hours </td>
+          <td> Water lightly</td>
+          <td> 18-29 (65-85) </td>
+        </tr>
+      </table>
+    </div>
 
     <h1 id=loadingMessage>Please click on a button to display sensor readings.</h1>
 
